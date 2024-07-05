@@ -1,19 +1,48 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-import TodoInput from "./Componets/TodoInput/TodoInput";
-import Navbar from "./Componets/Navbar/Navbar";
+// App.js
 
-function App() {
-  const [count, setCount] = useState(0);
+import React from "react";
+import { Provider, useSelector } from "react-redux";
+import {
+  Container,
+  Typography,
+  ThemeProvider,
+  createTheme,
+  CssBaseline,
+} from "@mui/material";
+import NavBar from "./Componets/Navbar/Navbar";
+import TodoInput from "./Componets/TodoInput/TodoInput";
+import TodoList from "./Componets/ListSection/ListSection";
+import "./App.css";
+
+const App = () => {
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
+
+  const theme = createTheme({
+    palette: {
+      mode: isDarkMode ? "dark" : "light",
+    },
+  });
 
   return (
-    <>
-      <Navbar />
-      <TodoInput />
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <NavBar />
+      <Container maxWidth="sm" style={{ marginTop: "20px" }}>
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
+          TODO LIST
+        </Typography>
+        <TodoInput />
+        <TodoList />
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

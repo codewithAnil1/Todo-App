@@ -1,0 +1,17 @@
+.todo-list-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  .todo-list-item {
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    
+  }
+  
+  .todo-list-item:last-child {
+    border-bottom: none;
+  }
+  
